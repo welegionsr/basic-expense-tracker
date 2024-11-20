@@ -1,0 +1,9 @@
+#include the following types only
+*
+!*/
+!*.c
+!*.cpp
+!*.h
+!*.hpp
+!*.md
+!.gitignore
