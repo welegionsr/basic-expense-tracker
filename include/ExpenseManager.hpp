@@ -3,6 +3,7 @@
 
 #include <unordered_map> // std::unordered_map
 #include <list> // std::list
+#include <vector>
 #include <memory> // smart ptrs
 #include <algorithm>
 
@@ -37,11 +38,15 @@ public:
     const ExpenseList& getExpensesByCategory(const std::string& category) const;
     double getTotalByCategory(const std::string& category) const;
 
+    const std::unordered_map <std::string, ExpenseList>& getAllExpenses() const;
+
+    void addCategory(const std::string& category);
     bool hasCategory(const std::string& category) const;
+    const std::vector<std::string>& getCategories() const;
 
 private:
-
     std::unordered_map <std::string, ExpenseList> _container;
+    std::vector<std::string> _categories;
 };
 
 

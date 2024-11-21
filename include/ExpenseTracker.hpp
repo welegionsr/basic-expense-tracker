@@ -22,6 +22,8 @@ private:
 
     void handleAdd();
     void handleQuit();
+    void handleViewCategories() const;
+    void handleViewAllSorted() const;
 
 };
 
