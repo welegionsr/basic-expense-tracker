@@ -16,9 +16,9 @@ void ExpenseManager::Reset()
     _container.clear();
 }
 
-const ExpenseManager::ExpenseList& ExpenseManager::getExpensesByCategory(std::string category) const
+const ExpenseManager::ExpenseList& ExpenseManager::getExpensesByCategory(const std::string& category) const
 {
-    if(_container.count(category))
+    if (hasCategory(category))
     {
         return _container.at(category);
     }
@@ -28,11 +28,11 @@ const ExpenseManager::ExpenseList& ExpenseManager::getExpensesByCategory(std::st
     }
 }
 
-double ExpenseManager::getTotalByCategory(std::string category) const
+double ExpenseManager::getTotalByCategory(const std::string& category) const
 {
     double total = 0;
 
-    if(_container.count(category))
+    if(hasCategory(category))
     {
         for(auto& exp : _container.at(category))
         {
@@ -41,4 +41,9 @@ double ExpenseManager::getTotalByCategory(std::string category) const
     }
 
     return total;
+}
+
+bool ExpenseManager::hasCategory(const std::string& category) const
+{
+    return _container.count(category);
 }

@@ -34,8 +34,10 @@ public:
     void AddExpense(std::unique_ptr<Expense> newExp);
     void Reset();
 
-    const ExpenseList& getExpensesByCategory(std::string category) const;
-    double getTotalByCategory(std::string category) const;
+    const ExpenseList& getExpensesByCategory(const std::string& category) const;
+    double getTotalByCategory(const std::string& category) const;
+
+    bool hasCategory(const std::string& category) const;
 
 private:
 
