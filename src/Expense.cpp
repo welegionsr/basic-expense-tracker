@@ -27,3 +27,18 @@ double Expense::getAmount() const
     return _amount;
 }
 
+void Expense::setCategory(const std::string& category)
+{
+    _category = category;
+}
+
+void Expense::setComment(const std::string& comment)
+{
+    _comment = comment;
+}
+
+void Expense::setAmount(double amount)
+{
+    _amount = amount;
+}
+

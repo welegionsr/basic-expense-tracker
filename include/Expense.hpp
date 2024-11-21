@@ -19,14 +19,17 @@ public:
     const std::string& getComment() const;
     double getAmount() const;
 
+    void setCategory(const std::string& category);
+    void setComment(const std::string& comment);
+    void setAmount(double amount);
+
 private:
-    size_t _id;
+    size_t _id = 0;
     std::string _category;
     std::string _comment;
     double _amount;
 
     static size_t _instances;
-    //TODO: date?
 
 }; // class Expense
 

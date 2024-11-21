@@ -31,6 +31,7 @@ static bool CompareExpenses(const Expense& lhs, const Expense& rhs)
 
 void ExpenseTracker::handleAdd()
 {
+    Expense newExpense("", 0, "");
     std::cout << "You chose to add a new expense.\nLet's begin!\n";
     std::cout << "First, type the amount in USD:\n";
     
@@ -39,8 +40,8 @@ void ExpenseTracker::handleAdd()
     while (!(std::cin >> amount))  //this will be true if an error occurs.
     {
         std::string str;
-        std::cin.clear();//you need to clear the flags before input
-        std::getline(std::cin, str);//read what was written. Since you probably don't need this, look into cin.ignore()
+        std::cin.clear(); // clear the flags before input
+        std::getline(std::cin, str);
         std::cout << str << " is not a valid input for amount. Try again!\n";
     }
 
@@ -50,31 +51,37 @@ void ExpenseTracker::handleAdd()
         return;
     }
 
-    std::cout << "Now type the name of the category:\n";
-    std::string category("");
-    std::cin >> category;
+    newExpense.setAmount(amount);
+
+    std::cin.clear();// clear the flags before input
+    std::cin.ignore();
+
+    std::cout << "Now type the name of the category:" << std::endl;
+    std::string input("");
+    std::getline(std::cin, input);
 
     // check if category already exists, and if not, add it
-    if(!_expenses.hasCategory(category))
+    if (!_expenses.hasCategory(input))
     {
         std::cout << "That's a new category, adding it automatically...\n";
     }
 
-    std::cout << "Any comment for this expense? (if not, just press Enter)\n";
-    std::string comment("");
-    std::cin >> comment;
+    newExpense.setCategory(input);
 
-    if(comment == "")
+    std::cout << "Any comment for this expense? (if not, just press Enter)\n";
+    std::getline(std::cin, input);
+
+    if (input == "")
     {
-        comment = "No comment.";
+        input = "No comment.";
     }
 
-    _expenses.AddExpense(std::make_unique<Expense>(category, amount, comment));
+    newExpense.setComment(input);
+
+    _expenses.AddExpense(std::make_unique<Expense>(newExpense));
 
     std::cout << "Expense successfully added!\n";
 
-    std::cin.clear(); // Clear error flags
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear buffer
 }
 
 void ExpenseTracker::handleQuit()
